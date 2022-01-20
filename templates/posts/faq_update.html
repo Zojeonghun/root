@@ -1,0 +1,33 @@
+{% extends '../base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/posts/faq_update.css' %}'>
+{% endblock style %}
+
+{% block content %}
+
+<div class='back_btn'>
+    <a onclick='goBack()'><i class="fas fa-arrow-left"></i> 뒤로가기</a>
+</div>
+<form method='post'>
+    {% csrf_token %}
+
+<div class='title'>
+    <h1>제목 :</h1>{{form.title}}
+</div>
+<div class='description'>
+    <h1>내용 :</h1>{{form.description}}
+</div>
+<div>
+    <h1>카테코리:</h1>
+{{form.category}}
+</div>
+
+<button class='submit_btn'>수정완료</button>
+
+</form>
+
+
+{% endblock content%}

@@ -1,0 +1,192 @@
+{% extends '../base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/feets_search.css' %}'>
+{% endblock style %}
+
+
+
+
+{% block content %}
+
+<div class='background_color'>
+    <div class='feet_search_container'>
+        <div class='title_conteiner'>
+            <h2 class='search_title'>나에게 맞는 의지 발 찾기</h2>
+        </div>
+        <div class='feet_search_content'>
+            <p class='p_font_size start_dec'>아래 시작하기를 눌러 나에게 맞는<br>의지 발을 찾아보세요.</p>
+            <div class='btn_container d-flex justify-content-center'>
+                <div class='btn_size'>
+                    <a class='btn_start btn_style'>시작하기</a>
+                </div>
+            </div>
+
+            <form method='get'>
+                {% csrf_token %}
+                <div class='select_container s1'>
+                    <p class='p_font_size'>Q1. 의족을 처음 착용합니까?</p>
+                    <div class='d-flex flex-row justify-content-center'> 
+                            <input type='radio' name='activity' value='11' id='activity_1'>
+                            <label href='#'  class='form-check-label' for='activity_1'><i class="fas fa-check"></i> 네</label>
+                            <input type='radio' name='activity' value='12' id='activity_2'>
+                            <label class='form-check-label' for='activity_2'><i class="fas fa-check"></i> 아니오</label>
+                    </div>
+                    <div class='btn_container d-flex justify-content-center'>
+                        <div class='btn_size'>
+                            <a class='btn_style' href='{% url 'feets:search' %}'>처음부터</a>
+                        </div>
+                        <div class='btn_size'>
+                            <a href='#' class='n1 n_hide btn_style'>다음 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='select_container s2'>
+                        <p class='p_font_size'>Q2. 방수 기능이 필요하십니까?<br>(물놀이, 샤워 등)</p>
+                        <div class='d-flex flex-row justify-content-center'>
+                                <input type='radio' name='waterproof' value='1' id='waterproof_1'>
+                                <label class='form-check-label' for='waterproof_1'><i class="fas fa-check"></i> 네</label>
+                                <input type='radio' name='waterproof' value='2' id='waterproof_2'>
+                                <label class='form-check-label' for='waterproof_2'><i class="fas fa-check"></i> 아니오</label>
+                        </div>
+                    <div class='btn_container d-flex justify-content-center'>
+                        <div class='btn_size'>
+                            <a href='#' class='b2 b_hide btn_style'><i class="fas fa-arrow-left"></i> 이전</a>
+                        </div>
+                        <div class='btn_size'>
+                            <a class='n2 n_hide btn_style'>다음 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='select_container s3'>
+                    <p class='p_font_size'>Q3. 의족을 착용한 이후에도 원하는<br>활동을 선택해주세요.</p>
+                    <div class='mob_select_3 justify-content-center'>
+                            <input type='radio' name='hope' value='8' id='hope_1'>
+                            <label class='form-check-label' for='hope_1'><i class="fas fa-check"></i> 골프, 조깅 등 걷기</label>
+                            <input type='radio' name='hope' value='7' id='hope_2'>
+                            <label class='form-check-label' for='hope_2'><i class="fas fa-check"></i> 테니스, 탁구 등 실내 운동</label>
+                            <input type='radio' name='hope' value='6' id='hope_3'>
+                            <label class='form-check-label' for='hope_3'><i class="fas fa-check"></i> 달리기</label>
+                            <input type='radio' name='hope' value='5' id='hope_4'>
+                            <label class='form-check-label' for='hope_4'><i class="fas fa-check"></i> 과격한 움직임</label>
+                            <input type='radio' name='hope' value='9' id='hope_5'>
+                            <label class='form-check-label' for='hope_5'><i class="fas fa-check"></i> 안전한 실내 이동</label>
+                    </div>
+                    <div class='btn_container d-flex justify-content-center'>
+                        <div class='btn_size'>
+                            <a class='b3 b_hide btn_style'><i class="fas fa-arrow-left"></i> 이전</a>
+                        </div>
+                        <div class='btn_size'>
+                            <a class='n3 n_hide btn_style'>다음 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class='select_container s4'>
+                    <p class='p_font_size'>Q4. 연령대를 선택해주세요.</p>
+                    <div class='mob_select_4 justify-content-center'>
+                            <input type='radio' name='age' value='1' id='age_1'>
+                            <label class='form-check-label' for='age_1'><i class="fas fa-check"></i> 30세 이하</label>
+                            <input type='radio' name='age' value='2' id='age_2'>
+                            <label class='form-check-label' for='age_2'><i class="fas fa-check"></i> 31~50세</label>
+                            <input type='radio' name='age' value='3' id='age_3'>
+                            <label class='form-check-label' for='age_3'><i class="fas fa-check"></i> 51~70세</label>
+                            <input type='radio' name='age' value='4' id='age_4'>
+                            <label class='form-check-label' for='age_4'><i class="fas fa-check"></i> 71세 이상</label>
+                    </div>
+                    <div class='btn_container d-flex justify-content-center'>
+                        <div class='btn_size'>
+                            <a class='b4 b_hide btn_style'><i class="fas fa-arrow-left"></i> 이전</a>
+                        </div>
+                        <div class='btn_size'>
+                            <a class='btn_final btn_style'>완료 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
+
+{% block jquery %}
+
+
+$('.btn_start').click(function() {
+        $('.s1').fadeIn(500);
+        $('.btn_start').hide();
+        $('.start_dec').hide();
+
+})
+
+$('.n1').click(function() {
+        $('.s2').fadeIn(500);
+        $('.s1').hide();
+})
+
+$('.n2').click(function() {
+        $('.s3').fadeIn(500);
+        $('.s2').hide();
+})
+
+$('.n3').click(function() {
+        $('.s4').fadeIn(500);
+        $('.s3').hide();
+})
+
+
+$('.b2').click(function() {
+    $('.s1').fadeIn(500);
+    $('.s2').hide();
+})
+
+$('.b3').click(function() {
+    $('.s2').fadeIn(500);
+    $('.s3').hide();
+})
+
+$('.b4').click(function() {
+    $('.s3').fadeIn(500);
+    $('.s4').hide();
+})
+
+
+
+
+$('.s1 div input').click(function() {
+        $('.n1').fadeIn(500);
+        $('.n1').css('display','block')
+    })
+
+$('.s2 div input').click(function() {
+        $('.n2').fadeIn(500);
+        $('.n2').css('display','block')
+    })
+
+$('.s3 div input').click(function() {
+        $('.n3').fadeIn(500);
+        $('.n3').css('display','block')
+    })
+
+$('.s4 div input').click(function() {
+    $('.btn_final').fadeIn(500);
+    $('.btn_final').css('display','block')
+    })
+
+$('.btn_final').click(function() {
+    $('form').submit();
+})
+
+
+{% endblock jquery %}
+

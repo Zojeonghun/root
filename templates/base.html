@@ -1,0 +1,132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}{% endblock page_title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel='stylesheet' href="{% static 'css/base.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2eb3964280.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {% block style %}{% endblock style %}
+    
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- 구글 폰트 -->
+</head>    
+<body>
+
+
+<header>
+{% include 'partials/header.html' %}
+</header>
+
+{% block content %}{% endblock content %}
+{% block script %}{% endblock script %}
+<footer>
+{% include 'partials/footer.html' %}
+</footer>
+
+
+<script>
+{% block jquery %}{% endblock jquery %}
+
+
+$('#guide').click(function() {
+    if ($("#guide_menu").is(":hidden")) {
+        $('#guide_menu').slideDown();
+        $('#search_menu').hide();
+        $('#faq_menu').hide();
+        $('#brand_menu').hide();
+    } else {
+        $('#guide_menu').slideUp();}
+    });
+
+$('#search').click(function() {
+    if ($("#search_menu").is(":hidden")) {
+        $('#search_menu').slideDown();
+        $('#guide_menu').hide();
+        $('#faq_menu').hide();
+        $('#brand_menu').hide();
+    } else {
+        $('#search_menu').slideUp();}
+    });
+
+$('#faq').click(function() {
+    if ($("#faq_menu").is(":hidden")) {
+        $('#faq_menu').slideDown();
+        $('#guide_menu').hide();
+        $('#search_menu').hide();
+        $('#brand_menu').hide();
+    } else {
+        $('#faq_menu').slideUp();}
+    });
+
+$('#brand').click(function() {
+    if ($("#brand_menu").is(":hidden")) {
+        $('#brand_menu').slideDown();
+        $('#guide_menu').hide();
+        $('#search_menu').hide();
+        $('#faq_menu').hide();
+    } else {
+        $('#brand_menu').slideUp();}
+    });
+
+
+
+
+$('#header_text div').on('mouseenter', mouseEnter);
+$('#header_text div').on('mouseleave', mouseLeave);
+
+function mouseEnter(event) {
+    var targetId = '#' + event.currentTarget.id;
+
+    $(targetId + ' p').css('color', '#91AD41')
+}
+
+function mouseLeave(event) {
+    var targetId = '#' + event.currentTarget.id;
+
+    $(targetId + ' p').css('color', '#000000')
+}
+
+
+
+
+$('#header_text div').on('mouseenter', mouseEnter);
+$('#header_text div').on('mouseleave', mouseLeave);
+
+function mouseEnter(event) {
+    var targetId = '#' + event.currentTarget.id;
+
+    $(targetId + ' p').css('color', '#91AD41')
+}
+
+function mouseLeave(event) {
+    var targetId = '#' + event.currentTarget.id;
+
+    $(targetId + ' p').css('color', '#000000')
+}
+
+function goBack(){
+    window.history.back();
+}
+
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+})
+
+</script>
+{% block js %}{% endblock js %}
+
+</body>
+
+</html>

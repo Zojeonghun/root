@@ -1,0 +1,23 @@
+{% extends '../base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block content %}
+<form method='post'>
+    {% csrf_token %}
+<div class='d-flex flex-row' style='margin-top:100px'>
+    <div class='back_btn' style='margin-left:100px; margin-right:100px'>
+        <a onclick='goBack()'><i class="fas fa-arrow-left"></i> 뒤로가기</a>
+    </div>
+
+    <div>
+    <button type="submit">삭제완료</button>
+    </div>
+</div>
+</form>
+
+{% endblock content%}

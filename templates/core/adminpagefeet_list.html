@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/core/adminpage_feet.css' %}'>
+{% endblock style %}
+
+
+
+
+{% block content %}
+<div class='admin_feet_list_container'>
+{% for feet in feets %}
+    <div>
+    <a href='{% url 'feets:feet-admin-update' feet.pk %}'>{{ feet.name }}</a>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock content %}
