@@ -48,14 +48,6 @@
 <div class='mob_header_fixed'>
 <div class='mob_header_bar justify-content-between'>
 
-
-
-    <div>
-        <a href="{% url 'core:home' %}">
-            <img class='mob_logo' src="{% static 'images/logo.png' %}">
-        </a>
-    </div>
-
     <div class='mob_header_nav_icon'>
         <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             <i class="fas fa-bars"></i>
@@ -104,5 +96,13 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <a href="{% url 'core:home' %}">
+            <img class='mob_logo' src="{% static 'images/logo.png' %}">
+        </a>
+    </div>
+
+
 </div>
 </div>
