@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/core/adminpage_feet.css' %}'>
+{% endblock style %}
+
+
+
+
+{% block content %}
+<div class='admin_feet_list_container'>
+    <div class='add_btn'>
+    <a href='{% url 'workshops:workshop-admin-create' %}'>[추가]</a>
+    </div>
+{% for workshop in workshops %}
+    <div>
+    <a class='workshop_btn'href='{% url 'workshops:workshop-admin-update' workshop.pk %}'>{{ workshop.name }}</a><a href='{%url 'workshops:workshop-admin-delete' workshop.pk %}'>[삭제]</a>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock content %}

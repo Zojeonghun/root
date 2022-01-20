@@ -1,0 +1,105 @@
+{% load static %}
+
+<div class="header_bar">
+    <div class="header_inner w-100">
+
+
+        <div class='d-flex justify-content-between align-items-center h-100'>
+            
+            <div class='d-flex '>
+                <div class='logo h-100'>
+                    <a href="{% url 'core:home' %}"><img src="{% static 'images/logo.png' %}" class='w-100' /></a>
+                </div>
+                <div class='header_btn_container d-flex flex-column'>
+                    <a href='{% url 'posts:posts-list' %}' id='guide' class='btn_header'>의족 FAQ</a>
+                </div>
+                <div class='header_btn_container d-flex flex-column'>
+                    <a href='#' id='search' class='btn_header'>의족 찾기</a>
+                    <div class='guide_drop_menu_display' id='search_menu'>
+                        <div class='guide_drop_menu d-flex flex-column'>
+                            <a href='{% url 'feets:feets' %}'>발</a>
+                            <a href='{% url 'knees:knees' %}'>무릎</a>
+                        </div>
+                    </div>
+                </div>
+                <div class='header_btn_container d-flex flex-column'>
+                    <a href='{% url 'core:userstory' %}' id='brand' class='btn_header'>유저 스토리</a>
+                </div>
+                <div class='header_btn_container d-flex flex-column'>
+                    <a href='{% url 'workshops:workshop-list' %}' id='brand' class='btn_header'>의족 상담</a>
+                </div>
+            </div>    
+
+
+            <div class='header_nav_icon'>
+                <a href='{% url 'core:admin-page' %}'><i class="fas fa-user-cog"></i></a>
+                <a href='#'><i class="fab fa-youtube"></i></a>
+                <a href='#'><i class="fab fa-instagram"></i></a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class='mob_header_fixed'>
+<div class='mob_header_bar justify-content-between'>
+    <div>
+        <a href="{% url 'core:home' %}">
+            <img class='mob_logo' src="{% static 'images/logo.png' %}">
+        </a>
+    </div>
+
+    <div class='mob_header_nav_icon'>
+        <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            <i class="fas fa-bars"></i>
+        </a>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body mob_menu_container">
+
+                <div class='mob_menu_logo_container'>
+                    <a href='{% url 'core:home' %}'><img class='mob_menu_logo' src='{% static 'images/logo.png' %}'></a>
+                </div>
+
+                <div>
+                    <button onclick="location.href='{% url 'posts:posts-list'%}';">
+                    의족 FAQ
+                    </button>
+                </div>
+
+                <div>
+                    <button class='d-flex flex-row justify-content-between'type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <div>의족 찾기</div><div><i class="fas fa-plus"></i></div>
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <a class="dropdown-item mob_menu_dropdown" href="{% url 'feets:feets' %}">발</a>
+                            <a class="dropdown-item mob_menu_dropdown" href='{% url 'knees:knees' %}'>무릎</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div>
+                    <button onclick="location.href='{% url 'core:userstory'%}';">
+                    유저 스토리
+                    </button>
+                </div>
+                <div>
+                    <button onclick="location.href='{% url 'workshops:workshop-list'%}';">
+                    의족 상담
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

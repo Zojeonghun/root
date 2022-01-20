@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/workshop.css' %}'>
+{% endblock style %}
+
+{% block content %}
+
+
+<div class='workshop_container'>
+    <div class='workshop_title'>
+        <h1>의족 제작 업체</h1>
+    </div>
+
+    <form class='search_form' method='get'>
+        <div class='d-flex justify-content-center search_bar'>
+            <div class='search_location'>{{form.location}}</div>
+            <div class='search_name'><input type='text' name='address_text' id='id_address_text'>
+                <button class='search_submit_btn' type='submit'>
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <div id="map" style="width:100%;height:300px;"></div>
+
+    <table class='workshop_table'>
+        <tr class='workshop_list_title'>
+            <td class='workshop_name'><h3>업체명</h3></td>
+            <td class='workshop_address_text'><h3>주소</h3></td>
+            <td class='workshop_number'><h3>연락처</h3></td>
+            <td class='btn_width'></td>
+            <td class='btn_width'></td>
+        </tr>
+
+{% for workshop in workshops %}
+        <tr class='workshop_list_container'>
+            <td class='workshop_name'><h3>{{workshop.name}}</h3></td>
+            <td class='workshop_address_text'><h3>{{workshop.address_text}}</h3></td>
+            <td class='workshop_number'><h3>{{workshop.number}}</h3></td>
+            <td class='btn_map btn_width'>
+                <a class='{{workshop.address_y}}'id='{{workshop.address_x}}' href='#'>
+                    <h4 class='map_text'>지도보기</h4>
+                </a>
+            </td>
+            <td class='btn_homepage btn_width'>
+                <a href='{{workshop.link}}' target='_blank'>
+                    <h4 class='map_text'>홈페이지</h4>
+                </a>
+            </td>
+        </tr>
+{% endfor %}
+    </table>
+<div class='mob_workshop_container'>
+{% for workshop in workshops %}
+    <div class='mob_workshop_list_container d-flex flex-row justify-content-between'>
+        <div class='d-flex flex-column'>
+            <div>
+                    <h5><strong>
+                    {{workshop.name}}</strong>
+                    </h5>
+            </div>
+            <div class='mob_workshop_address'>
+                    <h5>
+                    {{workshop.address_text}}
+                    </h5>
+            </div>
+            <div>
+                    <h5>
+                    {{workshop.number}}
+                    </h5>
+            </div>
+        </div>
+        <div class='d-flex flex-column align-self-center'>
+            <div>
+                <a href='{{workshop.link}}' target='_blank'>
+                    <h6>홈페이지</h6>
+                </a>
+            </div>
+            <div class='btn_map'>
+                <a class='{{workshop.address_y}}'id='{{workshop.address_x}}' href='#'>
+                    <h6>지도보기</h6>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+</div>
+{% endblock content %}
+
+{% block script %}
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=12f0e4a056aefb131510b130b9b5983c"></script>
+
+<script>
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = { 
+            center: new kakao.maps.LatLng(37.47446325266207, 127.0362837604124), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커를 표시할 위치와 title 객체 배열입니다 
+var positions = [
+    {
+        title: '<div>오토복</div>',
+        latlng: new kakao.maps.LatLng(37.47446325266207, 127.0362837604124),
+        number: '<div>02-577-3831</div>',
+        address: '<div>서울특별 서초구 양재천로 9길 1</div>'
+    },
+{% for workshop in workshops %}
+    {
+        title: '<div>{{workshop.name}}</div>',
+        latlng: new kakao.maps.LatLng({{workshop.address_x}}, {{workshop.address_y}}),
+        number: '<div>{{workshop.number}}</div>',
+        address: '<div>{{workshop.address_text}}</div>'
+    },
+{% endfor %}
+];
+
+
+
+
+
+for (var i = 0; i < positions.length; i ++) {
+
+    var content = '<div class="customoverlay">' +
+                    positions[i].title +
+                    positions[i].number +
+                    positions[i].address +
+                '   </div>';
+
+
+    var marker = new kakao.maps.Marker({
+        map: map, 
+        position: positions[i].latlng
+        }); 
+
+    var customOverlay = new kakao.maps.CustomOverlay({
+        content: content,
+        position: positions[i].latlng,
+        yAnchor: 2.1
+        });
+
+
+    marker.setMap(map);
+    customOverlay.setMap(map);
+    
+}
+
+$('.btn_map a').on('click', click);
+
+function click(event) {
+    var targetId = event.currentTarget.id;
+    var targetClass = event.currentTarget.className
+
+    var positionX = Number(targetId)
+    var positionY = Number(targetClass)
+
+    var moveLatLon = new kakao.maps.LatLng(positionX, positionY);
+    map.panTo(moveLatLon);
+}
+
+
+$(document).ready(function(){
+    localStorage.clear();
+})
+
+</script>
+
+{% endblock script %}

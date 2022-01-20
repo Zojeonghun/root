@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/core/adminpage_feet.css' %}'>
+{% endblock style %}
+
+
+
+
+{% block content %}
+<form method='post'>
+    {% csrf_token %}
+<div class='admin_form_container'>
+<div>
+{{form.code}}
+</div>
+<div>
+{{form.name}}
+</div>
+<div>
+{{form.description}}
+</div>
+<div>
+활동등급{{form.mobis_grade}}
+</div>
+<div>
+{{form.activity}}
+</div>
+<div>
+{{form.function}}
+</div>
+<div>
+{{form.age}}
+</div>
+<div>
+{{form.rating}}
+</div>
+<div>
+{{form.waterproof}}
+</div>
+<div>
+가능범위{{form.brand}}
+</div>
+<div>
+    <button type='submit' >완료</button>
+</div>
+</div>
+
+</form>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/feets.css' %}'>
+{% endblock style %}
+
+{% block content %}
+
+
+<div class='feet_container_1 d-flex' >
+        <div class='d-flex feet_container_inner_1'>
+                <div class='feet_inner_1'>
+                        <img class='feet_inner_img' src="{% static 'images/feet_img/feet_img(2).png' %}">
+                </div>
+                <div class='feet_text_1 feet_text'>
+                        <h1>나에게 맞는 발은?</h1>
+                        <h2>나에게 필요한 기능은 무엇일까요.<br>
+                            처음 사용자를 위한 발 선택 가이드
+                        </h2>
+                        <div class='btn_guide_start'>
+                                <a href='{% url 'feets:search' %}'>시작하기</a>
+                        </div>
+                </div>
+        </div>
+</div>
+
+<div class='feet_container_2 d-flex flex-column'>
+    <div class='feet_inner_2 translate-middle'>
+    </div>
+    <div class='feet_text_2 translate-middle feet_text'>
+        <h1>내가 찾는 제품은?</h1>
+        <h2>모든 모델을<br>
+        둘러 보시겠습니까? <br>
+        </h2>
+        <div class='btn_guide_start'>
+            <a href='{% url 'feets:feets-list-all' %}'>시작하기</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
+
+
+{% block jquery %}
+
+$(document).ready(function() {
+    $('.feet_inner_img').fadeIn(2000);
+});
+
+
+{% endblock jquery %}

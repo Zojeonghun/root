@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/core/adminpage_feet.css' %}'>
+{% endblock style %}
+
+
+
+
+{% block content %}
+<form method='post'>
+    {% csrf_token %}
+<div class='admin_form_container'>
+<div>
+회사명{{form.name}}
+</div>
+<div>
+지역{{form.location}}
+</div>
+<div>
+주소{{form.address_text}}
+</div>
+<div>
+연락처{{form.number}}
+</div>
+<div>
+홈페이지{{form.link}}
+</div>
+<div>
+주소 X좌표{{form.address_x}}
+</div>
+<div>
+주소 Y좌표{{form.address_y}}
+</div>
+
+<div>
+    <button type='submit' >완료</button>
+</div>
+
+
+
+</div>
+
+</form>
+
+
+
+{% endblock content %}

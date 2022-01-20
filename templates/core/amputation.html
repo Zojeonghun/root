@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_title %}오토복코리아헬스케어{% endblock page_title %}
+{% block style %}
+<link rel='stylesheet' href='{% static 'css/core/amputation.css' %}'>
+{% endblock style %}
+{% block content %}
+
+<div class='home_container_1'>
+
+    <div class='home_image_container'>
+        <img src="{% static 'images/guide/guide(1).jpg' %}">
+        <div class='home_title_container translate-middle'>
+            <h1>절단 부위, 절단 길이별 차이를 확인하세요.</h1>
+            <h2>아래 구분에 따라 제작 기간과 방법, 착용하는 제품이 달라집니다.
+            </h2>
+        </div>
+    </div>
+
+    <div class='home_image_container_2'>
+        <img src="{% static 'images/amputation/foot_amputation.jpg' %}">
+        <div class='home_title_container_2 translate-middle'>
+            <h1>발가락 또는 발목 절단</h1>
+            <h2>
+            </h2>
+        </div>
+    </div>
+
+    <div class='home_image_container_2'>
+        <img src="{% static 'images/amputation/transtibial.jpg' %}">
+        <div class='home_title_container_2 translate-middle'>
+            <h1>하퇴 절단</h1>
+            <h2>
+            </h2>
+        </div>
+    </div>
+
+    <div class='home_image_container_2'>
+        <img src="{% static 'images/amputation/knee_disarticulation.jpg' %}">
+        <div class='home_title_container_2 translate-middle'>
+            <h1>무릎관절 이단</h1>
+            <h2>
+            </h2>
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}
